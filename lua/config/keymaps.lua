@@ -9,5 +9,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- keymaps
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space><Space>", ":wq<CR>", { noremap = true, silent = true })
+
+-- plugin keymaps
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open file explorer" }) -- File explorer(Oil)
