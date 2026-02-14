@@ -11,6 +11,7 @@ vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+vim.opt.clipboard = "unnamedplus"
 
 -- Line wrapping on/off
 -- vim.opt.wrap = false         -- wrap line
