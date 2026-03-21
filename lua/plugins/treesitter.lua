@@ -4,6 +4,7 @@ return {
     lazy = false,
     build = ":TSUpdate",
     opts = {
+      parser_install_dir = vim.fn.stdpath("data") .. "/site",
       ensure_installed = {
         "bash",
         "c",
@@ -50,6 +51,7 @@ return {
       },
     },
     config = function(_, opts)
+      vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
