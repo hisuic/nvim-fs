@@ -6,8 +6,8 @@
 --        \/         \/              \/                 \/            \/  --
 
 -- keymaps
-vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Space><Space>", ":wq<CR>", { noremap = true, silent = true })
+vim.keymap.set("i", "jj", "<ESC>", { silent = true })
+vim.keymap.set("n", "<Space><Space>", "<cmd>wq<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
@@ -17,7 +17,21 @@ vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open oil.nvim" })
 
 -- Telescope Nvim
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
-vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
-vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers)
-vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags)
+local builtin = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep,  { desc = "Live Grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers,    { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags,  { desc = "Help Tags" })
+
+-- gitsigns
+local gs = function(fn) return function() require("gitsigns")[fn]() end end
+
+vim.keymap.set("n", "]c", gs("next_hunk"), { desc = "Next Hunk" })
+vim.keymap.set("n", "[c", gs("prev_hunk"), { desc = "Prev Hunk" })
+vim.keymap.set("n", "<leader>hs", gs("stage_hunk"), { desc = "Stage Hunk" })
+vim.keymap.set("n", "<leader>hr", gs("reset_hunk"), { desc = "Reset Hunk" })
+vim.keymap.set("n", "<leader>hp", gs("preview_hunk"), { desc = "Preview Hunk" })
+vim.keymap.set("n", "<leader>tb", gs("toggle_current_line_blame"), { desc = "Toggle Blame" })
+
+
