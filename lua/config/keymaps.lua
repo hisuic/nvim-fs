@@ -17,12 +17,16 @@ vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open oil.nvim" })
 
 -- Telescope Nvim
-local builtin = require("telescope.builtin")
+local tel = function(fn)
+  return function()
+    require("telescope.builtin")[fn]()
+  end
+end
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep,  { desc = "Live Grep" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers,    { desc = "Buffers" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags,  { desc = "Help Tags" })
+vim.keymap.set("n", "<leader>ff", tel("find_files"), { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fg", tel("live_grep"), { desc = "Live Grep" })
+vim.keymap.set("n", "<leader>fb", tel("buffers"), { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fh", tel("help_tags"), { desc = "Help Tags" })
 
 -- gitsigns
 local gs = function(fn) return function() require("gitsigns")[fn]() end end
@@ -33,5 +37,4 @@ vim.keymap.set("n", "<leader>hs", gs("stage_hunk"), { desc = "Stage Hunk" })
 vim.keymap.set("n", "<leader>hr", gs("reset_hunk"), { desc = "Reset Hunk" })
 vim.keymap.set("n", "<leader>hp", gs("preview_hunk"), { desc = "Preview Hunk" })
 vim.keymap.set("n", "<leader>tb", gs("toggle_current_line_blame"), { desc = "Toggle Blame" })
-
 
