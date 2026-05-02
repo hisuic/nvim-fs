@@ -9,10 +9,12 @@
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space><Space>", ":wq<CR>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
+
 -- Plugin Keymaps
 
 -- oil.nvim
-vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open file explorer" }) -- File explorer(Oil)
+vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open oil.nvim" })
 
 -- Telescope Nvim
 vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
