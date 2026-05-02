@@ -5,13 +5,17 @@
 --  \___|_  /|__/____  >____/|__/____  >   \_/ |__|__|_|  /__|    \___  > --
 --        \/         \/              \/                 \/            \/  --
 
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 -- keymaps
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Space><Space>", ":wq<CR>", { noremap = true, silent = true })
 
--- plugin keymaps
+-- Plugin Keymaps
+
+-- oil.nvim
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open file explorer" }) -- File explorer(Oil)
+
+-- Telescope Nvim
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<leader>fb', require('telescope.builtin').buffers)
+vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags)
