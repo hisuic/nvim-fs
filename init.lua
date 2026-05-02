@@ -12,6 +12,7 @@ vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamedplus"
+vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
 -- Line wrapping on/off
