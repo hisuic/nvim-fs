@@ -1,10 +1,31 @@
 return {
-	{
-    'nvim-telescope/telescope.nvim', version = '*',
+  {
+    'nvim-telescope/telescope.nvim',
+    version = '*',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      -- optional but recommended
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    }
-	}
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+      },
+    },
+    config = function()
+      local telescope = require('telescope')
+
+      telescope.setup({
+        defaults = {},
+        extensions = {
+          fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+          },
+        },
+      })
+
+      telescope.load_extension('fzf')
+    end,
+  }
 }
+
