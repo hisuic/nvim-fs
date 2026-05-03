@@ -33,7 +33,7 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
 
           ["<CR>"] = cmp.mapping.confirm({
-            select = true,
+            select = false,
           }),
 
           ["<Tab>"] = cmp.mapping(function(fallback)
@@ -65,6 +65,12 @@ return {
           { name = "buffer" },
         }),
       })
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+
+      cmp.event:on(
+        "confirm_done",
+        cmp_autopairs.on_confirm_done()
+      )
     end,
   },
 }
