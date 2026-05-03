@@ -5,6 +5,7 @@ vim.cmd("set shiftwidth=2")
 
 require("config.lazy")
 require("config.keymaps")
+require("config.autocmds")
 
 -- Basic Settings
 vim.g.mapleader = " "
