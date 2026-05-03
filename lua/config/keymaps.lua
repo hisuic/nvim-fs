@@ -11,6 +11,11 @@ vim.keymap.set("n", "<Space><Space>", "<cmd>wq<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Open Lazy" })
 
+-- Buffer switch
+vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
+
+
 -- Plugin Keymaps
 
 -- oil.nvim
