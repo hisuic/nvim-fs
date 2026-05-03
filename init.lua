@@ -6,6 +6,7 @@ vim.cmd("set shiftwidth=2")
 require("config.lazy")
 require("config.keymaps")
 
+-- Basic Settings
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
@@ -14,6 +15,19 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+
+-- Undo Settings
+local undodir = vim.fn.stdpath("state") .. "/undo"
+
+-- Create undo directory if it doesn't exist
+if vim.fn.isdirectory(undodir) == 0 then
+  vim.fn.mkdir(undodir, "p")
+end
+
+vim.opt.undofile = true
+vim.opt.undodir = undodir
+vim.opt.undolevels = 500        -- undo履歴の深さ
+vim.opt.undoreload = 2000       -- ファイル再読み込み時のundo保持
 
 -- Line wrapping on/off
 -- vim.opt.wrap = false         -- wrap line
