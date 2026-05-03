@@ -38,3 +38,19 @@ vim.keymap.set("n", "<leader>hr", gs("reset_hunk"), { desc = "Reset Hunk" })
 vim.keymap.set("n", "<leader>hp", gs("preview_hunk"), { desc = "Preview Hunk" })
 vim.keymap.set("n", "<leader>tb", gs("toggle_current_line_blame"), { desc = "Toggle Blame" })
 
+-- Window Management
+-- Split window
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Vertical Split" })
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Horizontal Split" })
+
+-- Move across windows
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+
+-- Change window size
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>")
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>")
+vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>")
+vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>")
