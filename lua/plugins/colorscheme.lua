@@ -6,6 +6,11 @@ return {
     config = function()
       require("kanagawa").setup({
         transparent = true,
+        overrides = function(colors)
+          return {
+            Visual = { bg = "#046204" },
+          }
+        end,
       })
       vim.cmd.colorscheme("kanagawa-dragon")
     end,
