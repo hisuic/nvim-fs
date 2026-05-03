@@ -15,6 +15,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Undo Settings
 local undodir = vim.fn.stdpath("state") .. "/undo"
