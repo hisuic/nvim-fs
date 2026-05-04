@@ -30,6 +30,7 @@ return {
 
       highlight = {
         enable = true,
+        disable = { "markdown", "markdown_inline" },
         -- Ruby など一部は regex ハイライト併用が欲しい場合がある
         additional_vim_regex_highlighting = false,
       },
@@ -54,6 +55,13 @@ return {
     config = function(_, opts)
       vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
       require("nvim-treesitter.configs").setup(opts)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(args)
+          vim.treesitter.stop(args.buf)
+        end,
+      })
     end,
   },
 }
