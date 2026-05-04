@@ -1,7 +1,13 @@
 local parsers = {
   "bash",
   "c",
+  "css",
+  "diff",
+  "dockerfile",
   "ecma",
+  "gitattributes",
+  "gitcommit",
+  "gitignore",
   "html",
   "html_tags",
   "javascript",
@@ -19,6 +25,7 @@ local parsers = {
   "vimdoc",
   "yaml",
   "rust",
+  "toml",
 }
 
 return {
@@ -40,8 +47,10 @@ return {
         install_dir = opts.install_dir,
       })
 
+      local filetypes = vim.list_extend(vim.deepcopy(opts.ensure_installed), { "jsonc" })
+
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = opts.ensure_installed,
+        pattern = filetypes,
         callback = function(args)
           vim.treesitter.start(args.buf)
           vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
