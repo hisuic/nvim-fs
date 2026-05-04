@@ -22,6 +22,9 @@ vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
 -- oil.nvim
 vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>", { desc = "Open oil.nvim" })
 
+-- Nvim tree
+vim.keymap.set("n", "<leader>E", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Tree" })
+
 -- Telescope Nvim
 local tel = function(fn)
   return function()
