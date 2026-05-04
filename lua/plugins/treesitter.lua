@@ -1,65 +1,47 @@
+local parsers = {
+  "bash",
+  "c",
+  "html",
+  "javascript",
+  "json",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "tsx",
+  "typescript",
+  "vim",
+  "vimdoc",
+  "yaml",
+  "rust",
+}
+
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "master",
+    "neovim-treesitter/nvim-treesitter",
+    dependencies = { "neovim-treesitter/treesitter-parser-registry" },
     lazy = false,
-    build = ":TSUpdate",
+    build = function()
+      require("nvim-treesitter").install(parsers, { summary = true }):wait(300000)
+    end,
     opts = {
-      parser_install_dir = vim.fn.stdpath("data") .. "/site",
-      ensure_installed = {
-        "bash",
-        "c",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "query",
-        "regex",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-        "rust",
-      },
-
-      auto_install = true,
-
-      highlight = {
-        enable = true,
-        disable = { "markdown", "markdown_inline" },
-        -- Ruby など一部は regex ハイライト併用が欲しい場合がある
-        additional_vim_regex_highlighting = false,
-      },
-
-      indent = {
-        enable = true,
-        -- もし崩れる言語があればここで disable する
-        -- disable = { "ruby" },
-      },
-
-      -- Syntax tree-based selection
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>",
-          node_incremental = "<CR>",
-          scope_incremental = "<S-CR>",
-          node_decremental = "<BS>",
-        },
-      },
+      install_dir = vim.fn.stdpath("data") .. "/site",
+      ensure_installed = parsers,
     },
     config = function(_, opts)
-      vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/site")
-      require("nvim-treesitter.configs").setup(opts)
+      local treesitter = require("nvim-treesitter")
+
+      treesitter.setup({
+        install_dir = opts.install_dir,
+      })
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
+        pattern = opts.ensure_installed,
         callback = function(args)
-          vim.treesitter.stop(args.buf)
+          vim.treesitter.start(args.buf)
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end,
       })
     end,
