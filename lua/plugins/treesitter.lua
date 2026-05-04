@@ -1,8 +1,11 @@
 local parsers = {
   "bash",
   "c",
+  "ecma",
   "html",
+  "html_tags",
   "javascript",
+  "jsx",
   "json",
   "lua",
   "markdown",
